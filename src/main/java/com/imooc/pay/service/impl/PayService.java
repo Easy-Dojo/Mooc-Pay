@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Service
 public class PayService implements IPayService {
     @Override
-    public void create(String orderId, BigDecimal amount) {
+    public PayResponse create(String orderId, BigDecimal amount) {
         //微信支付配置
         WxPayConfig wxPayConfig = new WxPayConfig();
         wxPayConfig.setAppId("wxd898fcb01713c658");
@@ -36,5 +36,7 @@ public class PayService implements IPayService {
         PayResponse response = bestPayService.pay(payRequest);
 
         log.info("response={}", response);
+
+        return response;
     }
 }

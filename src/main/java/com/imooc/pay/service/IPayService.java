@@ -1,7 +1,9 @@
 package com.imooc.pay.service;
 
+import com.lly835.bestpay.model.PayResponse;
+
 import java.math.BigDecimal;
 
 public interface IPayService {
-    void create(String orderId, BigDecimal amount);
+    PayResponse create(String orderId, BigDecimal amount);
 }

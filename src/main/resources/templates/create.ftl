@@ -11,7 +11,7 @@
 <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script>
   $('#qrCodeCanvas').qrcode({
-    text: 'https://www.baidu.com',
+    text: '${codeUrl}',
   })
 </script>
 </body>
