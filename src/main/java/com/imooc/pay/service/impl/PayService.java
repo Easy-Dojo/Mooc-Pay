@@ -20,6 +20,8 @@ public class PayService implements IPayService {
 
     @Override
     public PayResponse create(String orderId, BigDecimal amount) {
+        //订单写入数据库
+
         //发起支付
         PayRequest payRequest = new PayRequest();
         payRequest.setOrderName("3083396-支付订单");
@@ -35,10 +37,19 @@ public class PayService implements IPayService {
     }
 
     @Override
-    public void asyncNotify(String notifyData) {
+    public String asyncNotify(String notifyData) {
         //1. 校验签名
         PayResponse payResponse = bestPayService.asyncNotify(notifyData);
-
         log.info("payResponse={}", payResponse);
+
+        //2. 金额校验（从数据中查询订单）
+
+        //3. 修改订单支付状态
+
+        //4. 告诉微信不要再通知了
+        return "<xml>\n" +
+                "  <return_code><![CDATA[SUCCESS]]></return_code>\n" +
+                "  <return_msg><![CDATA[OK]]></return_msg>\n" +
+                "</xml>";
     }
 }

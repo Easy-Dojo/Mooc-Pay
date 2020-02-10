@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 public interface IPayService {
     PayResponse create(String orderId, BigDecimal amount);
 
-    void asyncNotify(String notifyData);
+    String asyncNotify(String notifyData);
 }

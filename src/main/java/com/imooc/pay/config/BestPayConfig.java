@@ -16,7 +16,7 @@ public class BestPayConfig {
         wxPayConfig.setAppId("wxd898fcb01713c658");
         wxPayConfig.setMchId("1483469312");
         wxPayConfig.setMchKey("098F6BCD4621D373CADE4E832627B4F6");
-        wxPayConfig.setNotifyUrl("https://2fe44bf1.ngrok.io/pay/notify");
+        wxPayConfig.setNotifyUrl("https://db09ece4.ngrok.io/pay/notify");
 
         BestPayServiceImpl bestPayService = new BestPayServiceImpl();
         bestPayService.setWxPayConfig(wxPayConfig);
