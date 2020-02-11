@@ -66,6 +66,7 @@ public class PayService implements IPayService {
             }
             //3. 修改订单支付状态
             payInfo.setPlatformStatus(OrderStatusEnum.SUCCESS.name());
+            payInfo.setPlatformNumber(payResponse.getOutTradeNo());
             payInfoMapper.updateByPrimaryKeySelective(payInfo);
         }
 
