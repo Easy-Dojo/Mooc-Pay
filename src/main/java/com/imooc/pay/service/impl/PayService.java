@@ -24,7 +24,7 @@ public class PayService implements IPayService {
 
         //发起支付
         PayRequest payRequest = new PayRequest();
-        payRequest.setOrderName("3083396-支付订单");
+        payRequest.setOrderName(orderId + "-支付订单");
         payRequest.setOrderId(orderId);
         payRequest.setOrderAmount(amount.doubleValue());
         payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_NATIVE);
