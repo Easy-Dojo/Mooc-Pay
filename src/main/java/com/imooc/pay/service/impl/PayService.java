@@ -54,8 +54,20 @@ public class PayService implements IPayService {
         log.info("payResponse={}", payResponse);
 
         //2. 金额校验（从数据中查询订单）
-
-        //3. 修改订单支付状态
+        PayInfo payInfo = payInfoMapper.selectByOrderNo(Long.parseLong(payResponse.getOrderId()));
+        if (payInfo == null) {
+            // 发出告警
+            throw new RuntimeException("通过orderNo查询出来的数据为空，需要管理员查明原因。");
+        }
+        if (!payInfo.getPlatformStatus().equals(OrderStatusEnum.SUCCESS.name())) {
+            if (payInfo.getPayAmount().compareTo(BigDecimal.valueOf(payResponse.getOrderAmount())) != 0) {
+                // 发出告警
+                throw new RuntimeException("数据库金额与支付平台返回结果金额不一致，需要管理员查明原因。orderNo=" + payResponse.getOrderId());
+            }
+            //3. 修改订单支付状态
+            payInfo.setPlatformStatus(OrderStatusEnum.SUCCESS.name());
+            payInfoMapper.updateByPrimaryKeySelective(payInfo);
+        }
 
         //4. 告诉微信不要再通知了
         return "<xml>\n" +
