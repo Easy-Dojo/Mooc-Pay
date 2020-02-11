@@ -25,7 +25,7 @@ public class PayController {
                                @RequestParam("amount") BigDecimal amount) {
         PayResponse payResponse = payService.create(orderId, amount);
 
-        Map map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("codeUrl", payResponse.getCodeUrl());
 
         return new ModelAndView("create", map);

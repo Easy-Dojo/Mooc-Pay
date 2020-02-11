@@ -1,7 +1,9 @@
 package com.imooc.pay.entities.dao;
 
 import com.imooc.pay.entities.PayInfo;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface PayInfoMapper {
     int deleteByPrimaryKey(Integer id);
 

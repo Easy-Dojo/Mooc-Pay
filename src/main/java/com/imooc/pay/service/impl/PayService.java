@@ -1,7 +1,10 @@
 package com.imooc.pay.service.impl;
 
+import com.imooc.pay.entities.PayInfo;
+import com.imooc.pay.entities.dao.PayInfoMapper;
 import com.imooc.pay.service.IPayService;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
+import com.lly835.bestpay.enums.OrderStatusEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
 import com.lly835.bestpay.service.BestPayService;
@@ -18,9 +21,17 @@ public class PayService implements IPayService {
     @Autowired
     private BestPayService bestPayService;
 
+    @Autowired
+    private PayInfoMapper payInfoMapper;
+
     @Override
     public PayResponse create(String orderId, BigDecimal amount) {
         //订单写入数据库
+        PayInfo payInfo = new PayInfo(
+                Long.parseLong(orderId),
+                OrderStatusEnum.NOTPAY.name(),
+                amount);
+        payInfoMapper.insertSelective(payInfo);
 
         //发起支付
         PayRequest payRequest = new PayRequest();

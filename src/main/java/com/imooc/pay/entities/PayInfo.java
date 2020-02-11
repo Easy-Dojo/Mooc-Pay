@@ -24,4 +24,10 @@ public class PayInfo {
     private Date createTime;
 
     private Date updateTime;
+
+    public PayInfo(long orderNo, String platformStatus, BigDecimal amount) {
+        this.orderNo = orderNo;
+        this.platformStatus = platformStatus;
+        this.payAmount = amount;
+    }
 }
