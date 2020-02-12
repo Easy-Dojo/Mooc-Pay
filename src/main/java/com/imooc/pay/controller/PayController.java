@@ -1,5 +1,6 @@
 package com.imooc.pay.controller;
 
+import com.imooc.pay.entities.PayInfo;
 import com.imooc.pay.service.impl.PayService;
 import com.lly835.bestpay.model.PayResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -35,5 +36,11 @@ public class PayController {
     @ResponseBody
     public String asyncNotify(@RequestBody String notifyData) {
         return payService.asyncNotify(notifyData);
+    }
+
+    @GetMapping("/queryByOrderId")
+    @ResponseBody
+    public PayInfo queryByOrderId(@RequestParam String orderId) {
+        return payService.queryByOrderId(orderId);
     }
 }

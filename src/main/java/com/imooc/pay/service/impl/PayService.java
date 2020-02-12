@@ -76,4 +76,9 @@ public class PayService implements IPayService {
                 "  <return_msg><![CDATA[OK]]></return_msg>\n" +
                 "</xml>";
     }
+
+    @Override
+    public PayInfo queryByOrderId(String orderId) {
+        return payInfoMapper.selectByOrderNo(Long.parseLong(orderId));
+    }
 }
