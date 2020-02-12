@@ -28,7 +28,7 @@ public class PayController {
 
         Map<String, String> map = new HashMap<>();
         map.put("codeUrl", payResponse.getCodeUrl());
-
+        map.put("orderId", orderId);
         return new ModelAndView("create", map);
     }
 
