@@ -16,3 +16,9 @@ mybatis:
 logging:
   pattern:
     console: "[%thread] %-5level %logger{36} - %msg%n"
+
+wx:
+  appId: xxx
+  mchId: xxx
+  mchKey: xxx
+  notifyUrl: https://db09ece4.ngrok.io/pay/notify
